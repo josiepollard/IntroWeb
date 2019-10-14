@@ -1,15 +1,21 @@
 require 'sinatra'
 
 get '/' do
-  "Hello!"
+  erb(:index)
 end
 
 get '/secret' do
-  "I hate green turtles!!!"
+  erb(:secret)
 end
 
-get '/cat' do
-  "<div style= 'border: 3px dashed red;'>
-  <img src='http://bit.ly/1eze8aE'>
-  </div>"
+get '/random_cat' do
+  @cat_name = ["Josie", "Will", "Albion", "Toby", "Luke"].sample
+  erb(:cat)
+end
+
+get '/named_cat' do
+  p params
+  @cat_name = (params[(:name)])
+  p @cat_name
+  erb(:cat)
 end
